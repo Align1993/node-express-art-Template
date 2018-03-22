@@ -1,6 +1,8 @@
 var express = require('express');
 var module = require('./module');
+var module = require('./module');
 var Student = require('./Student');
+var foo = require('./foo');
 var somePackages = require('./somepackages'); // 当require引入一个包时。nodeJS会找到包（文件夹）一级目录下的index.js为接口文件
 var student = new Student();
 student.sayHi('liujun');
