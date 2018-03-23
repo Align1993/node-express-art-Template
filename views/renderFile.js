@@ -1,3 +1,4 @@
+// 配置template；
 var template = require('art-template');
 var defaults = template.defaults; // 模板选项
 var options = Object.assign(defaults, {
@@ -28,11 +29,10 @@ function renderFile() {
     } else {
         data = {}
     }
-    console.log(data);
     options.filename = filename;
     try {
-        var render = template.compile(options);
-        callback(null, render(data));
+        var render = template.compile(options); // compile(source, options)
+        callback(null, render(data)); // render(source, data, options)
     } catch (e) {
         callback(e);
     }

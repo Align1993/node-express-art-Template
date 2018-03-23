@@ -20,10 +20,20 @@ app.set('views', process.cwd()); // 指定模板文件存放位置
 app.set('view engine', 'html') // 省略时使用的默认引擎扩展
 app.engine('html', require('./renderFile.js'));
 
-app.get('/',function(req, res){  
-    res.render('index.html', {list: [{id: '1', name:'tom'}, {id: 2, name: 'coco'}]});   // 渲染视图
-//    res.send('ddddd')
-  })  
+var requestList = [
+    {router: 'buy/buy.html', path: '/buy/index.js'}
+]
+
+requestList.forEach(function(item) {
+    var actionReq = require('./action' + item.path);
+    app.get(item.router, function(req, res, next) {
+        actionReq(req, res, next);
+    })
+})
+// app.get('/',function(req, res){  
+//     res.render('buy/buy.html', {list: [{id: '1', name:'tom'}, {id: 2, name: 'coco'}]});   // 渲染视图 res.render(view [, locals] [, callback])
+// //    res.send('ddddd')
+//   })  
 app.listen(3000, function(){
     console.log('listenning 3000')
 

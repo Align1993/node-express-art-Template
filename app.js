@@ -9,15 +9,18 @@ student.sayHi('liujun');
 var app = express();
  module.logHello();
  somePackages.foo('foo');
-app.get('/', function (req, res) {
-    res.send('hello world!')
-})
+// app.get('/', function (req, res) {
+//     res.send('hello world!')
+// })
 
-var server = app.listen(3000, function () {  // 启动一个服务并监听3000端口进入的所有连接请求，并未所欲url为'/'的返回'hello world!';
-    var host = server.address().address;
-    var address = server.address();
+app.use(express.static(__dirname + '/static/public')); // use 注册中间件
 
-       var port = server.address().port;
+app.listen(8080);
+// var server = app.listen(3000, function () {  // 启动一个服务并监听3000端口进入的所有连接请求，并未所欲url为'/'的返回'hello world!';
+//     var host = server.address().address;
+//     var address = server.address();
 
-    console.log(port);
-})
+//        var port = server.address().port;
+
+//     console.log(port);
+// })
